@@ -1,0 +1,33 @@
+/* Estilos para el Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    /* Agrega otros estilos de tu elección */
+  }
+  
+  /* Estilos para la página principal */
+  .main-page {
+    display: flex;
+    /* Ajusta la alineación y el espacio según tus necesidades */
+  }
+  
+  .table-container {
+    flex: 1;
+    margin: 10px;
+    /* Agrega otros estilos de tu elección */
+  }
+  
+  .vertical-table {
+    flex: 0.5; /* Ancho relativo para la tabla vertical */
+    margin: 10px;
+    /* Agrega otros estilos de tu elección */
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Agrega otros estilos de tu elección para las tablas */
+  }
+  
