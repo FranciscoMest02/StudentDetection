@@ -1,4 +1,4 @@
-# ** Momento de Retroalimentación: Reto Metodología **
+# Momento de Retroalimentación: Reto Metodología
 
 En esta carpeta se encuentran los documentos requeridos para la primera entrega del proyecto, donde definimos la metodología, recursos y planeación del proyecto.
 
