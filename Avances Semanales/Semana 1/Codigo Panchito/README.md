@@ -4,6 +4,6 @@ Este primer codigo es un avance para la detección de caras para el pase de list
 
 Para correr el código se necesita instalar la librería de opencv, con:
 
-'''pip install opencv-python'''
+'pip install opencv-python'
 
 Se recomienda usar un ambiente virtual pero no es necesario.
