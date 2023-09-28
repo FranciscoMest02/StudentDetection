@@ -16,7 +16,7 @@ const LoginView = () => {
       }
 
     return (
-        <div className='inline-block px-12 py-12 border border-black rounded-2xl'>
+        <div className='inline-block bg-white px-12 py-12 rounded-2xl'>
             <p className='text-2xl bold font-bold'>¡Bienvenido de vuelta!</p>
             <p className='text-lg'>Inicia sesión para acceder a tu cuenta</p>
 

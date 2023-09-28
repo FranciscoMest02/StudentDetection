@@ -5,10 +5,9 @@ import LoginView from '@/app/componentes/LoginView';
 
 function page() {
     return (
-        <>
-            <LoginView></LoginView>
-        </>
-    
+            <div className="h-screen grid place-items-center bg-gradient-to-tr from-blue-300 to-indigo-800">
+            <LoginView/>
+        </div>
     );
 }
 
