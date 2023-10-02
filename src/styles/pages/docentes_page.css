@@ -1,33 +1,54 @@
-/* Estilos para el Sidebar */
+/* Sidebar container */
 .sidebar {
-    width: 250px;
-    height: 100vh;
-    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 240px;
+    background-color: #D1D5DB;
     color: white;
-    /* Agrega otros estilos de tu elección */
+    z-index: 1; /* Higher z-index to make it appear above the navbar */
+    padding-right: 20px;
   }
   
-  /* Estilos para la página principal */
-  .main-page {
+  /* Navbar container */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 302px; /* Adjust this value to match the width of your sidebar */
+    right: 0;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 20px 0;
+    z-index: 0; /* Lower z-index to make it appear below the sidebar */
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    /* Ajusta la alineación y el espacio según tus necesidades */
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    text-align: center;
   }
   
-  .table-container {
-    flex: 1;
-    margin: 10px;
-    /* Agrega otros estilos de tu elección */
+  /* Search bar styling */
+  .search-bar {
+    flex-grow: 1;
   }
   
-  .vertical-table {
-    flex: 0.5; /* Ancho relativo para la tabla vertical */
-    margin: 10px;
-    /* Agrega otros estilos de tu elección */
+  .search-input {
+    width: 40%;
+    padding: 8px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    background-color: #D1D5DB ;
   }
   
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    /* Agrega otros estilos de tu elección para las tablas */
-  }
-  
+  /* Profile styling */
+  .profile-name {
+    font-size: 18px;
+    margin-right: 80px;
+ }
