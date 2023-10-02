@@ -16,27 +16,35 @@ const LoginView = () => {
       }
 
     return (
-        <>
-            <div>
-                <p>Bienvenido de vuelta</p>
-                <p>Inicia sesión para acceder a tu cuenta</p>
+        <div className='inline-block bg-white px-12 py-12 rounded-2xl'>
+            <p className='text-2xl bold font-bold'>¡Bienvenido de vuelta!</p>
+            <p className='text-lg'>Inicia sesión para acceder a tu cuenta</p>
 
-                <form onSubmit={onSubmit}>
-                    <label for="mail">Correo electronico</label>
-                    <input id="mail" type="text" name="mail" />
+            <form onSubmit={onSubmit}>
+                <div className='mt-8'>
+                    <label htmlFor="mail" className='block font-bold pb-2'>Correo electrónico</label>
+                    <input id="mail" type="text" name="mail" placeholder='ejemplo@gmail.com' className='w-96 border border-gray-500 rounded-md px-2 py-2'/>
+                </div>
+                
+                <div className='mt-8'>
+                    <label htmlFor="password" className='block font-bold pb-2'>Contraseña</label>
+                    <input id="password" type="password" name="password" placeholder='Escribe tu contraseña' className='w-96 border border-gray-500 rounded-md px-2 py-2' />
+                </div>
+
+                <div className='grid grid-cols-2 mt-4'>
+                    <label>
+                        <input type="checkbox" name="agree" value="yes" />
+                        <span className='ml-2 text-xs'>Mantener mi sesión iniciada</span>
+                    </label>
                     
-                    <label for="password">Contraseña</label>
-                    <input id="password" type="password" name="password" />
+                    <span className='place-self-end'><a href='#' className='ml-2 text-xs underline font-semibold'>Olvidé mi contraseña</a></span>
+                </div>
+                <div className='flex justify-center mt-16 '>
+                    <button type="submit" className='border px-16 py-2 rounded-xl bg-blue-700 text-white'>Iniciar sesión</button>
+                </div>
+            </form>
 
-                    <p>Mantenerme loggeado</p>
-
-                    <p><a>Olvidé mi contraseña</a></p>
-
-                    <button type="submit">Submit</button>
-                </form>
-
-            </div>
-        </>
+        </div>
     );
 }
 
