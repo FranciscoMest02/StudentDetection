@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "next": "latest",
     "react": "latest",
+    "react-data-table-component": "^7.5.4",
     "react-dom": "latest",
-    "next": "latest"
+    "react-google-charts": "^4.0.1",
+    "react-vis": "^1.12.1"
   },
   "devDependencies": {
     "autoprefixer": "latest",
