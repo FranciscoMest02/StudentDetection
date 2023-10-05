@@ -1,5 +1,11 @@
 # Student Detection Project
 
+## Evidencia de trabajo al 4 de octubre
+
+A continuación se adjunta un video con el cual se puede ver al funcionalidad de la detección de los alumnos en tiempo real. Una vez que el alumno es detectado, se guarda su asistencia en la base de datos y se puede visualizar instantaneamente en la página web. 
+
+https://youtu.be/80mGK1D1JJI
+
 ## Evidencias de comunicación con el socio formador
 
 En el siguiente link se encuentra un documento donde se adjuntan las evidencias de comunicación con el socio formador. 
