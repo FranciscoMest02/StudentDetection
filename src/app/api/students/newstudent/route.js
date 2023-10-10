@@ -4,7 +4,7 @@ import Student from '@/models/Student';
 
 export async function POST(request) {
     // Connect to the MongoDB database
-    connectDB();
+    await connectDB();
 
     try {
         const data = await request.json();

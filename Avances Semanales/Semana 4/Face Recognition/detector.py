@@ -7,7 +7,7 @@ import datetime
 import requests
 import shutil
 import uuid
-
+import datetime
 # Pasos para instalar el programa:
 
 # Para Mac:
@@ -55,15 +55,14 @@ def organize_captured_image(name, captured_image_path):
     target_file_path = target_dir / captured_image_path.name
     shutil.move(captured_image_path, target_file_path)
 
-
 def generate_random_id():
     random_uuid = str(uuid.uuid4()).replace("-", "")
     return random_uuid
 
-def save_new_student_db(name):
+def save_new_student_db(id_student,name):
     url = 'http://localhost:3000/api/students/newstudent'  # Replace with the URL you're sending the request to
     payload = {
-        "id": generate_random_id(), 
+        "id": id_student, 
         "name": name,
         "courses": [
             {
@@ -87,9 +86,10 @@ def register_new_face():
     output_dir.mkdir(parents=True, exist_ok=True)
     capture_face_image(output_dir)
     name = get_person_name()
-    save_new_student_db(name)
+    id_student =  generate_random_id()
+    save_new_student_db(id_student, name)
     captured_image_path = list(output_dir.glob('*.jpg'))[0]
-    organize_captured_image(name, captured_image_path)
+    organize_captured_image(id_student, captured_image_path)
     encode_known_faces()
     shutil.rmtree(output_dir)  # Remove temporary directory
 
@@ -122,11 +122,23 @@ def has_been_logged_today(name):
     today = datetime.datetime.now().strftime('%Y-%m-%d')
     return (name, today) in logged_today
 
-def send_put_request():
-    url = 'http://localhost:3000/api/students/attendance/651b2ca6d2c5faca9bfa182a'  # Replace with the URL you're sending the request to
+def get_students_info():
+    url = 'http://localhost:3000/api/students/getstudentsinfo'
+
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        print('GET Students info request successful:', response.text)
+    else:
+        print('GET Students info request failed:', response.text)
+
+def send_put_request(id_identified):
+    url = 'http://localhost:3000/api/students/attendance/' + id_identified  
     payload = {
-        "minutes": 200,
-        "date": "2023-10-05T07:52:00"
+        "minutes": 222,
+        "date": str(datetime.datetime.now())
     }
     headers = {
         'Content-Type': 'application/json'
@@ -163,6 +175,8 @@ def recognize_faces_live(
     with encodings_location.open(mode="rb") as f:
         loaded_encodings = pickle.load(f)
 
+    students = get_students_info()
+    print(students)
     cap = cv2.VideoCapture(0)  # Open the default camera
     recognized_names = set()  # Set to keep track of recognized names
     try:
@@ -179,14 +193,14 @@ def recognize_faces_live(
             input_face_encodings = face_recognition.face_encodings(rgb_frame, input_face_locations)
 
             for bounding_box, unknown_encoding in zip(input_face_locations, input_face_encodings):
-                name = _recognize_face(unknown_encoding, loaded_encodings)
-                if name and name not in recognized_names:
-                    recognized_names.add(name)  # Add the name to the set of recognized names
-                    log_recognition(name)  # Log the recognition event
-                    send_put_request()
+                id_identified = _recognize_face(unknown_encoding, loaded_encodings)
+                if id_identified and id_identified not in recognized_names:
+                    recognized_names.add(id_identified)  # Add the name to the set of recognized names
+                    log_recognition(id_identified)  # Log the recognition event
+                    send_put_request(id_identified)
 
-                if not name:
-                    name = "Unknown"
+                if not id_identified:
+                    id_identified = "Unknown"
 
                 # Draw bounding box
                 top, right, bottom, left = bounding_box
@@ -195,7 +209,7 @@ def recognize_faces_live(
                 # Draw label
                 cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
                 font = cv2.FONT_HERSHEY_DUPLEX
-                cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+                cv2.putText(frame, id_identified, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
 
             cv2.imshow('Frame', frame)
 

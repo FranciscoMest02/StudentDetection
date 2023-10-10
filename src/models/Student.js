@@ -3,7 +3,6 @@ import { Schema, model, models } from "mongoose";
 const studentSchema = new Schema({
     id: {
         type: String,
-        //required: [true, "Se require el id del usuario"],
         trim: true
     },
     name: {
