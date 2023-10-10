@@ -4,7 +4,7 @@ const studentSchema = new Schema({
     id: {
         type: String,
         //required: [true, "Se require el id del usuario"],
-        unique: true
+        trim: true
     },
     name: {
         type: String,
@@ -32,8 +32,8 @@ const studentSchema = new Schema({
             ]
         }
     ]
-}, { 
-    collection: 'student' 
+}, {
+    collection: 'student'
 })
 
 export default models.Student || model('Student', studentSchema)
