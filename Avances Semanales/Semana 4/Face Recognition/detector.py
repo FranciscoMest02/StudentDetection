@@ -6,6 +6,7 @@ from collections import Counter
 import datetime
 import requests
 import shutil
+import uuid
 
 # Pasos para instalar el programa:
 
@@ -54,11 +55,39 @@ def organize_captured_image(name, captured_image_path):
     target_file_path = target_dir / captured_image_path.name
     shutil.move(captured_image_path, target_file_path)
 
+
+def generate_random_id():
+    random_uuid = str(uuid.uuid4()).replace("-", "")
+    return random_uuid
+
+def save_new_student_db(name):
+    url = 'http://localhost:3000/api/students/newstudent'  # Replace with the URL you're sending the request to
+    payload = {
+        "id": generate_random_id(), 
+        "name": name,
+        "courses": [
+            {
+            "id": "course_id_1", 
+            "name": "CourseTemplate",
+            "assistance": []
+            }
+  ]
+    }
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    response = requests.post(url, json=payload, headers=headers)
+    if response.status_code == 200:
+        print('POST New student request successful:', response.text)
+    else:
+        print('Failed to send POST New student request:', response.text)
+
 def register_new_face():
     output_dir = Path("temp")
     output_dir.mkdir(parents=True, exist_ok=True)
     capture_face_image(output_dir)
     name = get_person_name()
+    save_new_student_db(name)
     captured_image_path = list(output_dir.glob('*.jpg'))[0]
     organize_captured_image(name, captured_image_path)
     encode_known_faces()
