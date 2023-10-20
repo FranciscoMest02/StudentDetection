@@ -1,29 +1,33 @@
+"use client";
 
-import Student from '@/models/Student'
-import { connectDB } from '@/utils/db'
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { fetchData } from "src/app/controllers/apiController";
 
-async function loadStudents() {
-    connectDB()
-    const students = await Student.find()
-    return students
-  }
-  
+function page() {
+  const [data, setData] = useState([]);
 
-async function page() {
-    const data = await loadStudents()
-    console.log(data[0].courses[0])
-    const assistance = data[0].courses[0].assistance
-    return (
-        <>
-            {assistance.map((item) => (
-                <div key={item.minutes}>
-                    <p>{item.minutes}</p>
-                    <p>{item.date.toString()}</p>
-                </div>
-            ))}
-        </>
-    );
+  data.length > 0
+    ? console.log(data[0].courses[0].assistance.length)
+    : console.log("array vacio");
+
+  // Fetching data when app starts
+  useEffect(() => {
+    async function fetchAndSetData() {
+      try {
+        const result = await fetchData();
+        setData(result);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
+    fetchAndSetData();
+  }, []);
+
+  //   const data = await loadStudents();
+  //   console.log(data[0].courses[0]);
+  //   const assistance = data[0].courses[0].assistance;
+  return <></>;
 }
 
-export default page
+export default page;
