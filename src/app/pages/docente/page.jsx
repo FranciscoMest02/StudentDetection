@@ -1,15 +1,50 @@
 "use client";
-import React from "react";
+
+import React, { useEffect, useState } from "react";
+
 import Sidebar from "@/app/componentes/Sidebar";
 import Navbar from "@/app/componentes/Navbar";
 import GroupsTable from "@/app/componentes/GroupsTable";
 import StudentsTable from "@/app/componentes/StudentsTable";
 import AttendanceChart from "@/app/componentes/AttendanceChart";
+import { fetchData } from "src/app/controllers/apiController";
 
 import "@/styles/pages/docentes_page.css";
 import "tailwindcss/tailwind.css";
 
 function Page() {
+  const [data, setData] = useState([]);
+  const [dataAttendance, setDataAttendance] = useState([]);
+
+  data.length > 0 ? console.log(data) : console.log("array vacio");
+  dataAttendance.length > 0
+    ? console.log(dataAttendance)
+    : console.log("attendance vacio");
+
+  // Fetching data when app starts
+  useEffect(() => {
+    async function fetchAndSetData() {
+      try {
+        const result = await fetchData();
+        setData(result);
+
+        let aux = result.map((person) => ({
+          id: person.id,
+          name: person.name,
+          attendance: person.courses.reduce(
+            (totalAttendance, course) =>
+              totalAttendance + course.assistance.length,
+            0
+          ),
+        }));
+        setDataAttendance(aux);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
+    fetchAndSetData();
+  }, []);
   return (
     <div className="flex h-screen">
       <Sidebar />
@@ -26,7 +61,7 @@ function Page() {
               <AttendanceChart />
             </div>
             <div className="bg-gray-300 row-span-5 p-2 rounded-lg">
-              <StudentsTable />
+              <StudentsTable data={dataAttendance} />
             </div>
           </div>
         </div>
