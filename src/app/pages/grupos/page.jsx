@@ -29,57 +29,6 @@ function Page() {
     fetchAndSetGroups();
   }, []);
 
-  const data = [
-    {
-      id: 1,
-      class: "Mathematics",
-      studentsNumber: 17,
-      attendance: 95,
-    },
-    {
-      id: 2,
-      class: "Biology",
-      studentsNumber: 19,
-      attendance: 9,
-    },
-    {
-      id: 3,
-      class: "Literature",
-      studentsNumber: 22,
-      attendance: 97,
-    },
-    {
-      id: 1,
-      class: "Geometry",
-      studentsNumber: 17,
-      attendance: 85,
-    },
-    {
-      id: 1,
-      class: "Physics",
-      studentsNumber: 21,
-      attendance: 90,
-    },
-    {
-      id: 1,
-      class: "Music",
-      studentsNumber: 20,
-      attendance: 80,
-    },
-    {
-      id: 1,
-      class: "Spanish",
-      studentsNumber: 11,
-      attendance: 100,
-    },
-    {
-      id: 1,
-      class: "Geometry",
-      studentsNumber: 21,
-      attendance: 90,
-    },
-  ];
-
   return (
     <div>
       <Navbar />
