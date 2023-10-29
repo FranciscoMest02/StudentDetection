@@ -15,11 +15,7 @@ import "tailwindcss/tailwind.css";
 function Page() {
   const [data, setData] = useState([]);
   const [dataAttendance, setDataAttendance] = useState([]);
-
-  data.length > 0 ? console.log(data) : console.log("array vacio");
-  dataAttendance.length > 0
-    ? console.log(dataAttendance)
-    : console.log("attendance vacio");
+  const [dataGroups, setdDtaGroups] = useState([]);
 
   // Fetching data when app starts
   useEffect(() => {
@@ -28,7 +24,7 @@ function Page() {
         const result = await fetchData();
         setData(result);
 
-        let aux = result.map((person) => ({
+        let auxAttendance = result.map((person) => ({
           id: person.id,
           name: person.name,
           attendance: person.courses.reduce(
@@ -37,7 +33,19 @@ function Page() {
             0
           ),
         }));
-        setDataAttendance(aux);
+        setDataAttendance(auxAttendance);
+
+        let auxGroups = result.map((person) => ({
+          id: person.courses.map((course) => course.id).join("-"), // Create a unique ID for the course
+          class: person.courses[0].name, // Assuming all courses have the same name for a person
+          studentsNumber: person.courses.length,
+          attendance: person.courses.reduce(
+            (totalAttendance, course) =>
+              totalAttendance + course.assistance.length,
+            0
+          ),
+        }));
+        setdDtaGroups(auxGroups);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -55,7 +63,7 @@ function Page() {
         <div className="flex-grow">
           <div className="grid grid-flow-col grid-rows-5 gap-5 p-4 pt-24 pr-20 h-[100%]">
             <div className="bg-gray-300 col-span-1 row-span-3 p-2 rounded-lg">
-              <GroupsTable />
+              <GroupsTable data={dataGroups} />
             </div>
             <div className="bg-gray-300 col-span-1 row-span-2 p-2 rounded-lg">
               <AttendanceChart />

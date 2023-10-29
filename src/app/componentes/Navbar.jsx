@@ -3,26 +3,22 @@ import Image from "next/image";
 
 function Navbar() {
   return (
-    <div className="navbar">
-      <div className="flex items-center">
-        <div className="search-bar">
-          <input type="text" placeholder="Search" className="search-input" />
-        </div>
-        <div className="profile flex items-center">
-          {" "}
-          {/* Add a flex container */}
-          <div className="profile-photol">
-            <Image
-              src="/panchito.png"
-              alt="Profile Photo"
-              width={40}
-              height={40}
-            />
-          </div>
-          <span className="profile-name">Francisco Mestizo</span>
+    <nav class="relative flex w-full flex-wrap items-center justify-between bg-[#FBFBFB] py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 lg:py-4">
+      <div class="flex w-full flex-wrap items-center justify-between px-3">
+        <a class="ml-2 text-xl text-neutral-800 dark:text-neutral-200" href="#">
+          Cursos
+        </a>
+        <div class="ml-5 flex w-[30%] items-center justify-between">
+          <input
+            type="search"
+            class="relative m-0 block w-[1px] min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none motion-reduce:transition-none dark:border-neutral-500 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+            placeholder="Buscar cursos"
+            aria-label="Search"
+            aria-describedby="button-addon2"
+          />
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
 

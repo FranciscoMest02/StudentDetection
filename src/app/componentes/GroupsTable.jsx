@@ -91,9 +91,15 @@ const customStyles = {
   },
 };
 
-function GroupsTable() {
+function GroupsTable(props) {
+  console.log("props", props);
   return (
-    <DataTable columns={columns} data={data} highlightOnHover pointerOnHover />
+    <DataTable
+      columns={columns}
+      data={props.data}
+      highlightOnHover
+      pointerOnHover
+    />
   );
 }
 
