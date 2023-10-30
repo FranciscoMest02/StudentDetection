@@ -1,35 +1,24 @@
 import { Schema, model, models } from "mongoose";
 
 const studentSchema = new Schema({
-    id: {
-        type: String,
-        trim: true
-    },
     name: {
         type: String,
         trim: true
     },
-    courses: [
+    attendance: [
         {
-            id: {
+            date: {
                 type: String,
                 trim: true
             },
-            name: {
+            courseId: {
                 type: String,
                 trim: true
             },
-            assistance: [
-                {
-                    minutes: {
-                        type: Number
-                    },
-                    date: {
-                        type: String
-                    }
-                }
-            ]
         }
+    ],
+    courses: [
+        { type: Schema.Types.ObjectId }
     ]
 }, {
     collection: 'student'
