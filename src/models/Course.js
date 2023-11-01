@@ -6,7 +6,6 @@ const courseSchema = new Schema({
     },*/
     name: String,
     teacher: String,
-    teacherId: String,
     students: [
         {
             name: String,
