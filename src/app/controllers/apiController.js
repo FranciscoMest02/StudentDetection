@@ -3,7 +3,7 @@ export async function fetchData() {
         const headers = {
             "Content-Type": "application/json",
         };
-
+ 
         const response = await fetch(
             "http://localhost:3000/api/students/getstudentsinfo",
             {
