@@ -19,6 +19,15 @@ const studentSchema = new Schema({
         {
             courseId: String
         }
+    ],
+    participation: [
+        {
+            course: {
+                id: String,
+                name: String
+            },
+            date: Date
+        }
     ]
 }, {
     collection: 'student'
