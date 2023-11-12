@@ -53,7 +53,6 @@ async function getAttendanceCourses(attendance) {
       ...item,
       course: course.name
     };
-    console.log(result);
     return result;
   });
 
