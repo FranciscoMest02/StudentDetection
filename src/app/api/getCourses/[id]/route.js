@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server';
 import { connectDB } from '@/utils/db';
-import Student from '@/models/Student';
+import Course from '@/models/Course';
 
-export async function GET(req, { params }) {
+export async function GET(req, {params}) {
     try {
-        connectDB();
-        const students = await Student.findById(params.id);
+        await connectDB();
 
-        return NextResponse.json(students);
+        const course = await Course.findById(params.id);
+
+        return NextResponse.json(course);
     } catch (error) {
         console.error('Error:', error);
         return NextResponse.error('Internal Server Error', 500);

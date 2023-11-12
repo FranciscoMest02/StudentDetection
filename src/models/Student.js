@@ -9,26 +9,15 @@ const studentSchema = new Schema({
         type: String,
         trim: true
     },
+    attendance: [
+        {
+            date: Date,
+            courseId: String,
+        }
+    ],
     courses: [
         {
-            id: {
-                type: String,
-                trim: true
-            },
-            name: {
-                type: String,
-                trim: true
-            },
-            assistance: [
-                {
-                    minutes: {
-                        type: Number
-                    },
-                    date: {
-                        type: String
-                    }
-                }
-            ]
+            courseId: String
         }
     ]
 }, {

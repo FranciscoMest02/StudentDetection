@@ -1,5 +1,5 @@
 import CourseAttendance from "@/app/componentes/CourseAttendance";
-import { fetchStudent } from "@/app/controllers/apiController";
+import { fetchCourse, fetchStudent } from "@/app/controllers/apiController";
 import React from "react";
 
 function sortAttendance(attendance) {
@@ -24,37 +24,47 @@ function sortAttendance(attendance) {
       // Add the attendance record to the corresponding date array
       attendanceByCourse[courseKey].push(record);
     });
+
+    for (const courseKey in attendanceByCourse) {
+        attendanceByCourse[courseKey].sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
     
     // Transform the attendanceByDate object into an array of objects
-    const resultArray = Object.keys(attendanceByCourse).map((courseKey) => ({
-      courseId: courseKey,
-      attendance: attendanceByCourse[courseKey],
+    const resultArray = Object.keys(attendanceByCourse).map((courseKey) => (
+        {
+          courseId: courseKey,
+          attendance: attendanceByCourse[courseKey],
     }));
-
-    // Function to format a date as "Monday, October 18, 2020"
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    const options = {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    };
-    return capitalizeFirstLetter(date.toLocaleDateString("es-MX", options));
-  }
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
+    /* AQUI HAY ERROR ARREGLAR
+    resultArray.map(async (item) => {
+      const course = await fetchStudent(item.courseId)
+      item.name = course.name
+    })
+    console.log(resultArray)
+*/
   // Now, resultArray contains the desired format
   return resultArray;
 }
 
+async function getAttendanceCourses(attendance) {
+  const promises = attendance.map(async (item) => {
+    const course = await fetchCourse(item.courseId);
+    const result = {
+      ...item,
+      course: course.name
+    };
+    console.log(result);
+    return result;
+  });
+
+  return Promise.all(promises);
+}
+
 export default async function StudentInformation({params}) {
     const student = await fetchStudent(params.id)
-    //const attendances = sortAttendance(student.attendance) 
-    //console.log(attendances)
+    const attendance = sortAttendance(student.attendance)
+    const attendanceCourses = await getAttendanceCourses(attendance)
+
     return (
         <div>
             <div className="text-center mt-12 mb-8"> 
@@ -64,11 +74,11 @@ export default async function StudentInformation({params}) {
             <span className="block text-md pl-8">Tus asistencias:</span>
             
             <div className="grid grid-cols-3 px-8">
-                {sortAttendance(student.attendance).map((att) => {
+                {attendanceCourses.map((att) => {
                     return(
-                        <CourseAttendance key={att.courseId} list={att} />
+                        <CourseAttendance key={att.courseId} list={att} top={3} />
                     )
-                })}
+                })} 
             </div>
 
             <span className="block text-md ml-8 mt-20">Tus participaciones:</span>
