@@ -25,10 +25,11 @@ export async function PUT(request, { params }) {
     // Create the new assistance object
     const newAssistance = {
       date: new Date(data.date), // Assuming 'date' is a string representing a date
+      courseId: data.courseId
     };
 
     // Push the new assistance data into the assistance array
-    student.courses[0].assistance.push(newAssistance); // Adjust the index as needed
+    student.attendance.push(newAssistance); // Adjust the index as needed
 
     // Save the updated student document
     await student.save();
