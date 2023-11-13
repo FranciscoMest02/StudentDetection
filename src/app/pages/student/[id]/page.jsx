@@ -1,4 +1,5 @@
 import CourseAttendance from "@/app/componentes/CourseAttendance";
+import StudentParticipation from "@/app/componentes/StudentParticipation";
 import { fetchCourse, fetchStudent } from "@/app/controllers/apiController";
 import React from "react";
 
@@ -35,14 +36,7 @@ function sortAttendance(attendance) {
           courseId: courseKey,
           attendance: attendanceByCourse[courseKey],
     }));
-    /* AQUI HAY ERROR ARREGLAR
-    resultArray.map(async (item) => {
-      const course = await fetchStudent(item.courseId)
-      item.name = course.name
-    })
-    console.log(resultArray)
-*/
-  // Now, resultArray contains the desired format
+
   return resultArray;
 }
 
@@ -59,10 +53,41 @@ async function getAttendanceCourses(attendance) {
   return Promise.all(promises);
 }
 
+function sortParticipations(participations){
+  const participationByCourse = {};
+
+  participations.forEach((item) => {
+    const record = {
+      _id: item._id,
+      date: item.date
+    }
+
+    const courseKey = item.course.id
+    if(!participationByCourse[courseKey]){
+      participationByCourse[courseKey] = {
+        name: item.course.name,
+        participation: []
+      }
+    }
+
+    participationByCourse[courseKey].participation.push(record);
+  })
+
+  const resultArray = Object.keys(participationByCourse).map((courseKey) => (
+      {
+        id: courseKey,
+        name: participationByCourse[courseKey].name,
+        participation: participationByCourse[courseKey].participation,
+  }));
+
+  return resultArray;
+}
+
 export default async function StudentInformation({params}) {
     const student = await fetchStudent(params.id)
     const attendance = sortAttendance(student.attendance)
     const attendanceCourses = await getAttendanceCourses(attendance)
+    const participationCourses = sortParticipations(student.participation)
 
     return (
         <div>
@@ -70,7 +95,7 @@ export default async function StudentInformation({params}) {
                 <span className="text-3xl font-bold">{student.name}</span>
             </div>
 
-            <span className="block text-md pl-8">Tus asistencias:</span>
+            <span className="block text-2xl font-bold ml-8 mt-20">Tus asistencias:</span>
             
             <div className="grid grid-cols-3 px-8">
                 {attendanceCourses.map((att) => {
@@ -80,10 +105,22 @@ export default async function StudentInformation({params}) {
                 })} 
             </div>
 
-            <span className="block text-md ml-8 mt-20">Tus participaciones:</span>
+            <span className="block text-2xl font-bold ml-8 mt-20">Tus participaciones:</span>
+            <div className="grid grid-cols-4 px-12 py-4">
+              <span className="block bg-gray-200 p-8">Ninguna</span>
+              <span className="block bg-green-200 p-8">Menos de 3</span>
+              <span className="block bg-green-400 p-8">Entre 3 y 6</span>
+              <span className="block bg-green-600 p-8">Más de 6</span>
+            </div>
 
             <div>
-                <span className="block ml-12 mt-12 text-2xl text-yellow-800 font-bold">En desarrollo...</span>
+                <div className="grid grid-cols-2 px-8 pb-12">
+                {participationCourses.map((item) => {
+                  return(
+                    <StudentParticipation key={item.id} course={item.name} list={item.participation} />
+                  )
+                })}
+                </div>
             </div>
 
         </div>
