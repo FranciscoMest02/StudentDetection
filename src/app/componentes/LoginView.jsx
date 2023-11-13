@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { manageAuth } from '../controllers/apiController';
+import { useRouter } from 'next/navigation';
+import cookie from 'js-cookie'
 
 const LoginView = () => {
-    async function onSubmit() {
-        //event.preventDefault()
+    const router = useRouter()
+    const [loading, setLoading] = useState(false)
+    async function onSubmit(event) {
+        event.preventDefault()
+        setLoading(true)
      
         const formData = new FormData(event.currentTarget)
-        const response = await fetch('/api/submit', {
-          method: 'POST',
-          body: formData,
-        })
-     
-        // Handle response if necessary
-        const data = await response.json()
-        // ...
+        const user = formData.get('mail') 
+        const pass = formData.get('password')
+
+        const ans = await manageAuth(user, pass)
+
+        if (ans.status === 'ok') {
+            cookie.set('id', ans.id)
+            if(ans.role === 'student'){
+                router.push('/pages/student/' + ans.id)            
+            } else if (ans.role === 'student') {
+                router.push('/pages/docente') 
+            }
+        } else {
+            // Display an error message or perform other actions for invalid credentials
+            setLoading(false)
+            alert('Invalid username or password');
+        }
       }
 
     return (
@@ -23,12 +38,12 @@ const LoginView = () => {
             <form onSubmit={onSubmit}>
                 <div className='mt-8'>
                     <label htmlFor="mail" className='block font-bold pb-2'>Correo electrónico</label>
-                    <input id="mail" type="text" name="mail" placeholder='ejemplo@gmail.com' className='w-96 border border-gray-500 rounded-md px-2 py-2'/>
+                    <input id="mail" type="text" name="mail" placeholder='ejemplo@gmail.com' className='w-96 border border-gray-500 rounded-md px-2 py-2' disabled={loading}/>
                 </div>
                 
                 <div className='mt-8'>
                     <label htmlFor="password" className='block font-bold pb-2'>Contraseña</label>
-                    <input id="password" type="password" name="password" placeholder='Escribe tu contraseña' className='w-96 border border-gray-500 rounded-md px-2 py-2' />
+                    <input id="password" type="password" name="password" placeholder='Escribe tu contraseña' className='w-96 border border-gray-500 rounded-md px-2 py-2' disabled={loading}/>
                 </div>
 
                 <div className='grid grid-cols-2 mt-4'>
@@ -40,7 +55,7 @@ const LoginView = () => {
                     <span className='place-self-end'><a href='#' className='ml-2 text-xs underline font-semibold'>Olvidé mi contraseña</a></span>
                 </div>
                 <div className='flex justify-center mt-16 '>
-                    <button type="submit" className='border px-16 py-2 rounded-xl bg-blue-700 text-white'>Iniciar sesión</button>
+                    <button type="submit" className='border px-16 py-2 rounded-xl bg-blue-700 text-white' disabled={loading}>{!loading ? 'Iniciar sesión' : 'Verificando...'}</button>
                 </div>
             </form>
 
