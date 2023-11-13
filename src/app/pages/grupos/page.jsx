@@ -8,14 +8,17 @@ import { fetchData } from "src/app/controllers/apiController";
 import GroupCards from "@/app/componentes/GroupCards";
 import { fetchGroups } from "src/app/controllers/apiController";
 
+import CourseModal from "@/app/componentes/CourseModal";
+
 import "@/styles/pages/docentes_page.css";
 import "tailwindcss/tailwind.css";
 
+// ... (imports)
+
 function Page() {
   const [dataGroups, setDataGroups] = useState([]);
-  console.log("dataGroups", dataGroups);
 
-  // Fetching data when app starts
+  // Fetching data when the app starts
   useEffect(() => {
     async function fetchAndSetGroups() {
       try {
@@ -32,16 +35,17 @@ function Page() {
   return (
     <div>
       <Navbar />
-
       <div className="content">
         <p className="text-4xl">Cursos</p>
         <p className="text-2xl">Selecciona un curso para ver su información</p>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-5">
-          {dataGroups.map((itemProps) => (
-            <GroupCards key={itemProps.id} props={itemProps} />
-          ))}
+          {dataGroups.length > 0 &&
+            dataGroups.map((itemProps) => (
+              <GroupCards key={itemProps.id} props={itemProps} />
+            ))}
         </div>
       </div>
+      <CourseModal />
     </div>
   );
 }
