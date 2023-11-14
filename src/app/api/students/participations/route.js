@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { connectDB } from '@/utils/db';
 import Student from '@/models/Student';
 
-export async function POST(req, res) {
+export async function PUT(req, res) {
     try {
         await connectDB();
         const data = await req.json()
