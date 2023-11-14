@@ -20,8 +20,8 @@ const LoginView = () => {
             cookie.set('id', ans.id)
             if(ans.role === 'student'){
                 router.push('/pages/student/' + ans.id)            
-            } else if (ans.role === 'student') {
-                router.push('/pages/docente') 
+            } else if (ans.role === 'teacher') {
+                router.push('/pages/grupos') 
             }
         } else {
             // Display an error message or perform other actions for invalid credentials
