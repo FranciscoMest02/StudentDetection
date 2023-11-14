@@ -23,7 +23,6 @@ export async function PUT(req, res) {
                 }
 
                 await student.participation.push(register)
-                await student.save()
             })
 
             await Promise.all(participationPromises)
@@ -33,7 +32,7 @@ export async function PUT(req, res) {
 
         await Promise.all(promises)
 
-        return NextResponse.json("Actualizado con exito");
+        return NextResponse.json({status: "ok", message: "Actualizado con exito"});
     } catch (error) {
         console.error('Error:', error);
         return NextResponse.error('Internal Server Error', 500);
