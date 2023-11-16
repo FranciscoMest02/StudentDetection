@@ -15,8 +15,11 @@ export async function POST(request) {
         // Save the new student document to the database
         await newStudent.save();
 
+        console.log(newStudent)
+
         return NextResponse.json({
             status: 200,
+            id: newStudent._id,
             body: { message: 'Student added successfully' },
         });
     } catch (error) {

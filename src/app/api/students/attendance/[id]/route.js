@@ -5,7 +5,6 @@ import Student from '@/models/Student';
 export async function PUT(request, { params }) {
   await connectDB()
   try {
-    console.log(params)
     const data = await request.json();
     // console.log(params.id)
     // const studentId = params.id; // Assuming 'id' is the parameter name for the student's ID
@@ -21,16 +20,16 @@ export async function PUT(request, { params }) {
     //   });
     // }
 
-    const student = await Student.findOne({ id: params.id });
+    const student = await Student.findById(params.id);
 
     // Create the new assistance object
     const newAssistance = {
-      minutes: data.minutes, // Replace with the correct property name from your request data
-      date: new Date(data.date), // Assuming 'date' is a string representing a date
+      date: data.date.slice(0, -6), // Assuming 'date' is a string representing a date
+      courseId: data.courseId
     };
 
     // Push the new assistance data into the assistance array
-    student.courses[0].assistance.push(newAssistance); // Adjust the index as needed
+    student.attendance.push(newAssistance); // Adjust the index as needed
 
     // Save the updated student document
     await student.save();
