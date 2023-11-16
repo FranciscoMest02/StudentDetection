@@ -21,11 +21,13 @@
     "react-data-table-component": "^7.5.4",
     "react-dom": "latest",
     "react-google-charts": "^4.0.1",
+    "react-modal": "^3.16.1",
     "react-vis": "^1.12.1"
   },
   "devDependencies": {
     "autoprefixer": "latest",
     "postcss": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "typescript": "5.2.2"
   }
 }

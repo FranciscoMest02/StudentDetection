@@ -13,15 +13,15 @@ export async function POST(req, res) {
 
         const newCourseObject = {
             name: params.name,
-            teacher: params.name,
+            teacher: params.teacher,
             students: [],
-            days: [],
+            days: params.days,
             time: {
                 start: params.startDate,
                 end: params.endDate
             },
             attendance: [],
-            imageUrl: params.imageUrl
+            imageUrl: ""
         };
 
         const course = new Course(newCourseObject);
