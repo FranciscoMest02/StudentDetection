@@ -9,9 +9,15 @@ const columns = [
     selector: (row) => row.name,
     wrap: true,
   },
+  {
+    name: "Asistencias",
+    selector: (row) => row.attendance,
+    wrap: true,
+  },
 ];
 
 function StudentsList(props) {
+  console.log(props)
   return (
     <>
       <DataTable

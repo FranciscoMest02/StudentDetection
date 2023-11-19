@@ -25,6 +25,13 @@ const courseSchema = new Schema({
         },
     ],
     image_url: [String],
+    participation: [
+        {
+            date: Date,
+            name: String,
+            studentId: String,
+        },
+    ]
 }, {
     collection: 'courses'
 });

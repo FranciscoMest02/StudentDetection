@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { connectDB } from '@/utils/db';
 import Student from '@/models/Student';
+import Course from '@/models/Course';
 
 export async function PUT(request, { params }) {
   await connectDB()
@@ -21,6 +22,7 @@ export async function PUT(request, { params }) {
     // }
 
     const student = await Student.findById(params.id);
+    const course = await Course.findById(data.courseId)
 
     // Create the new assistance object
     const newAssistance = {
@@ -28,11 +30,19 @@ export async function PUT(request, { params }) {
       courseId: data.courseId
     };
 
+    const courseAssistance = {
+      date: data.date.slice(0, -6),
+      studentId: params.id,
+      name: student.name
+    }
+
     // Push the new assistance data into the assistance array
     student.attendance.push(newAssistance); // Adjust the index as needed
+    course.attendance.push(courseAssistance);
 
     // Save the updated student document
     await student.save();
+    await course.save();
 
     return NextResponse.json({
       status: 200,
