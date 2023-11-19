@@ -7,6 +7,8 @@ import Navbar from "@/app/componentes/Navbar";
 import AttendanceChart from "@/app/componentes/AttendanceChart";
 import { fetchCourse } from "@/app/controllers/apiController";
 
+export const dynamic = 'force-dynamic'
+
 function countAttendancesByDay(courseObject) {
   const attendanceByDay = {};
 
