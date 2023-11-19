@@ -128,6 +128,7 @@ function toArray(object, firstColumn, secondColumn) {
 
 async function Page({ params }) {
   const course = await fetchCourse(params.id)
+  console.log(course)
   const att = toArray(countAttendancesByDay(course), "Fecha", "Asistencias totales")
   const part = toArray(countParticipationsByDay(course), "Fecha", "Participaciones")
   const students = countAttendancesByStudent(course)
