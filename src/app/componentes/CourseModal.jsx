@@ -28,13 +28,25 @@ function CourseModal(props) {
       { value: "vi", isClicked: false },
     ],
     time: { start: "", end: "" },
+    participation: [], 
+    attendance: []
   });
-
-  console.log("form data", formData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    if (name.includes('.')) {
+      const [parent, child] = name.split('.');
+      setFormData((prevData) => ({
+        ...prevData,
+        [parent]: {
+          ...prevData[parent],
+          [child]: value,
+        },
+      }));
+    } else {
+      // If it's not a nested property, update directly
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
 
   const handleSubmit = (e) => {
@@ -54,7 +66,11 @@ function CourseModal(props) {
       days: selectedDays,
       startDate: formData.time.start,
       endDate: formData.time.end,
+      participation: formData.participation,
+      attendance: formData.attendance
     };
+
+    console.log(postData)
 
     // Fetch options
     const requestOptions = {
@@ -162,23 +178,26 @@ function CourseModal(props) {
             <span className="text-gray-700">Horario:</span>
             <div className="mt-1 flex space-x-4">
               <input
-                type="text"
+                type="time"
                 name="time.start"
-                value={formData.time.start}
                 onChange={handleChange}
-                placeholder="Hora de inicio"
+                min="00:00"
+                max="23:30"
+                step="1800" // 1800 seconds = 30 minutes
                 className="p-2 flex-1 rounded-md border-gray-300"
               />
               <input
-                type="text"
+                type="time"
                 name="time.end"
-                value={formData.time.end}
                 onChange={handleChange}
-                placeholder="Hora de fin"
+                min="00:00"
+                max="23:30"
+                step="1800"
                 className="p-2 flex-1 rounded-md border-gray-300"
               />
             </div>
           </label>
+
 
           {/* Similar sections for days, time, attendance, and image_url */}
 

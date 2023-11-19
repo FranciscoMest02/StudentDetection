@@ -2,9 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-import Sidebar from "@/app/componentes/Sidebar";
 import Navbar from "@/app/componentes/Navbar";
-import { fetchData } from "src/app/controllers/apiController";
 import GroupCards from "@/app/componentes/GroupCards";
 import { fetchGroups } from "src/app/controllers/apiController";
 
