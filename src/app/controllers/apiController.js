@@ -3,9 +3,9 @@ export async function fetchData() {
         const headers = {
             "Content-Type": "application/json",
         };
- 
+        const host = process.env.NODE_ENV == 'production' ? 'https://class-insight.vercel.app/' : 'http://localhost:3000/'
         const response = await fetch(
-            "http://localhost:3000/api/students/getstudentsinfo",
+            host + "api/students/getstudentsinfo",
             {
                 method: "GET",
                 headers: headers,
@@ -28,9 +28,9 @@ export async function fetchGroups() {
         const headers = {
             "Content-Type": "application/json",
         };
-
+        const host = process.env.NODE_ENV == 'production' ? 'https://class-insight.vercel.app/' : 'http://localhost:3000/'
         const response = await fetch(
-            "http://localhost:3000/api/getCourses",
+            host + "api/getCourses",
             {
                 method: "GET",
                 headers: headers,
@@ -54,9 +54,9 @@ export async function fetchStudent(id) {
         const headers = {
             "Content-Type": "application/json",
         };
-
+        const host = process.env.NODE_ENV == 'production' ? 'https://class-insight.vercel.app/' : 'http://localhost:3000/'
         const response = await fetch(
-            "http://localhost:3000/api/students/" + id,
+            host + "api/students/" + id,
             {
                 method: "GET",
                 headers: headers,
@@ -81,9 +81,9 @@ export async function fetchCourse(id) {
         const headers = {
             "Content-Type": "application/json",
         };
-
+        const host = process.env.NODE_ENV == 'production' ? 'https://class-insight.vercel.app/' : 'http://localhost:3000/'
         const response = await fetch(
-            "http://localhost:3000/api/getCourses/" + id,
+            host + "api/getCourses/" + id,
             {
                 method: "GET",
                 headers: headers,
@@ -112,8 +112,10 @@ export async function manageAuth(user, pass) {
             "password": pass
         }
 
+        const host = process.env.NODE_ENV == 'production' ? 'https://class-insight.vercel.app/' : 'http://localhost:3000/'
+
         const response = await fetch(
-            "http://localhost:3000/api/auth/",
+            host + "api/auth/",
             {
                 method: "POST",
                 headers: headers,
