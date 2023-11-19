@@ -5,75 +5,7 @@ import Sidebar from "@/app/componentes/Sidebar";
 import StudentsList from "@/app/componentes/StudentList";
 import Navbar from "@/app/componentes/Navbar";
 import AttendanceChart from "@/app/componentes/AttendanceChart";
-
-async function loadCourse(id) {
-  try {
-    connectDB();
-    const course = await Course.findById(id);
-    return course;
-  } catch (e) {
-    console.log(e);
-    return null;
-  }
-}
-
-function studentObject(arr) {
-  return arr.map((item) => {
-    return {
-      _id: item._id.toString(),
-      name: item.name,
-    };
-  });
-}
-
-function sortAttendance(attendance) {
-  // Create an object to store attendance records by date
-  const attendanceByDate = {};
-
-  // Iterate through the attendance records and group them by date
-  attendance.forEach((item) => {
-    // Extract the date part (ignoring the time)
-    const record = {
-      name: item.name,
-      studentId: item.studentId,
-      date: item.date,
-    };
-    const dateKey = record.date.toISOString().split("T")[0];
-
-    // Check if the date key already exists, if not, initialize it with an empty array
-    if (!attendanceByDate[dateKey]) {
-      attendanceByDate[dateKey] = [];
-    }
-
-    // Add the attendance record to the corresponding date array
-    attendanceByDate[dateKey].push(record);
-  });
-
-  // Transform the attendanceByDate object into an array of objects
-  const resultArray = Object.keys(attendanceByDate).map((dateKey) => ({
-    date: formatDate(dateKey),
-    attendance: attendanceByDate[dateKey],
-  }));
-
-  // Function to format a date as "Monday, October 18, 2020"
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    const options = {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    };
-    return capitalizeFirstLetter(date.toLocaleDateString("es-MX", options));
-  }
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  // Now, resultArray contains the desired format
-  return resultArray;
-}
+import { fetchCourse } from "@/app/controllers/apiController";
 
 function countAttendancesByDay(courseObject) {
   const attendanceByDay = {};
@@ -193,7 +125,7 @@ function toArray(object, firstColumn, secondColumn) {
 }
 
 async function Page({ params }) {
-  const course = await loadCourse(params.id);
+  const course = await fetchCourse(params.id)
   const att = toArray(countAttendancesByDay(course), "Fecha", "Asistencias totales")
   const part = toArray(countParticipationsByDay(course), "Fecha", "Participaciones")
   const students = countAttendancesByStudent(course)

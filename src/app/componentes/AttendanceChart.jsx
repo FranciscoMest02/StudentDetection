@@ -13,7 +13,7 @@ function AttendanceChart(props) {
     legend: { position: "none" },
   };
 
-  return props.data.lenght > 0 ? 
+  return props.data.length > 0 ? 
   <Chart chartType="ColumnChart" data={data} options={options} />
   :
   <p>No data</p>

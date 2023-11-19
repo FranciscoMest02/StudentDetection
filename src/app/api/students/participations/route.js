@@ -6,9 +6,10 @@ import Course from '@/models/Course';
 export async function PUT(req, res) {
     try {
         await connectDB();
+    
         const data = await req.json()
-        console.log(data)
-
+        
+        
         const courseObj = await Course.findById(data.courseId)
         
         const course = {
