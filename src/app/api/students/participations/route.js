@@ -23,13 +23,13 @@ export async function PUT(req, res) {
             const participationPromises = item.participations.map(async (parti) => {
                 const register = {
                     course,
-                    "date": parti
+                    "date": parti.slice(0, -6),
                 }
 
                 const courseRegister = {
                     studentId: item.studentId,
                     name: student.name,
-                    date: parti
+                    date: parti.slice(0, -6),
                 }
 
                 await student.participation.push(register)
