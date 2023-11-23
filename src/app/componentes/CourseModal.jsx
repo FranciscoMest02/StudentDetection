@@ -81,7 +81,8 @@ function CourseModal(props) {
       body: JSON.stringify(postData),
     };
 
-    fetch("http://localhost:3000/api/postCourse", requestOptions)
+    const host = process.env.NODE_ENV == 'production' ? 'https://class-insight.vercel.app/' : 'http://localhost:3000/'
+    fetch(host + "api/postCourse", requestOptions)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
