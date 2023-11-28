@@ -6,16 +6,22 @@ Este es el repositorio final para el Reto de la UF TC3007C. En este repositorio 
 - David Esquer Ramos - A01114940
 - Francisco Mestizo Hernández - A01731549
 - Adrián Emmanuel Faz Mercado - A01570770
-  
 
-## Estructura del repositorio y Archivos a revisar
+  
+## Estructura del repositorio
+-  **/Reporte final:** Reporte final del proyecto.
+-  **/Entregables finales:** Folder con la version final de los entregables de reto (a excepecion de la entrega "Reto Privacidad y Seguridad de los Datos" la cual se entrego en el portafolio de analisis)
 -  **/Plataforma Web:** Codigo fuente de la plataforma web del proyecto realizado.
 -  **/Motor de deteccion facial y estimación de poses** Codigo fuente del motor de deteccion facial y reconocimiento de poses del proyecto realizado.
--  **/Entregables finales:** Folder con la version final de los entregables de reto (a excepecion de la entrega "Reto Privacidad y Seguridad de los Datos" la cual se entrego en el portafolio de analisis)
 -  **/Entregables Retroalimentacion:** Folder con la primer version de los entregables de reto.
 -  **/Avances semanales:** Folder que contiene registro y evidencia de avances semanales durante el desarrollo del proyecto.
--  **/Reporte final:** Reporte final del proyecto.
 -  **README.md:** Este archivo.
+
+## Archivos a Revisar
+-  **/Reporte final:** Reporte final del proyecto.
+-  **/Entregables finales:** Folder con la version final de los entregables de reto (a excepecion de la entrega "Reto Privacidad y Seguridad de los Datos" la cual se entrego en el portafolio de analisis)
+-  **/Plataforma Web:** Codigo fuente de la plataforma web del proyecto realizado.
+-  **/Motor de deteccion facial y estimación de poses** Codigo fuente del motor de deteccion facial y reconocimiento de poses del proyecto realizado.
 
 
 ## Correcciones en entregables de reto.
