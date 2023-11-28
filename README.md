@@ -1,11 +1,12 @@
-# Student Detection Project
+# Repositorio Final - Student Detection Project
+Este es el repositorio final para el Reto de la UF TC3007C. En este repositorio se encontrarán los diferentes archivos, reportes y scripts correspondientes a las entregas del reto desarrollado.
+
+
 - Jorge Eduardo De León Reyna - A00829759
 - David Esquer Ramos - A01114940
 - Francisco Mestizo Hernández - A01731549
 - Adrián Emmanuel Faz Mercado - A01570770
-
   
-
 
 ## Estructura del repositorio y Archivos a revisar
 1. **/Plataforma Web:** Codigo fuente de la plataforma web del proyecto realizado.
