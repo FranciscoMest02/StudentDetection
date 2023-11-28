@@ -9,12 +9,12 @@ Este es el repositorio final para el Reto de la UF TC3007C. En este repositorio 
 
   
 ## Estructura del repositorio
--  **/Reporte final:** Reporte final del proyecto.
--  **/Entregables finales:** Folder con la version final de los entregables de reto (a excepecion de la entrega "Reto Privacidad y Seguridad de los Datos" la cual se entrego en el portafolio de analisis)
--  **/Plataforma Web:** Codigo fuente de la plataforma web del proyecto realizado.
--  **/Motor de deteccion facial y estimación de poses** Codigo fuente del motor de deteccion facial y reconocimiento de poses del proyecto realizado.
--  **/Entregables Retroalimentacion:** Folder con la primer version de los entregables de reto.
--  **/Avances semanales:** Folder que contiene registro y evidencia de avances semanales durante el desarrollo del proyecto.
+-  **/Reporte final:** Reporte final del proyecto. (https://github.com/FranciscoMest02/StudentDetection/blob/main/Reporte%20Final/Reporte%20Final.pdf)
+-  **/Entregables finales:** Folder con la version final de los entregables de reto (a excepecion de la entrega "Reto Privacidad y Seguridad de los Datos" la cual se entrego en el portafolio de analisis) (https://github.com/FranciscoMest02/StudentDetection/tree/main/Entregables%20Finales)
+-  **/Plataforma Web:** Codigo fuente de la plataforma web del proyecto realizado. (https://github.com/FranciscoMest02/StudentDetection/tree/main/Plataforma%20Web)
+-  **/Motor de deteccion facial y estimación de poses** Codigo fuente del motor de deteccion facial y reconocimiento de poses del proyecto realizado. (https://github.com/FranciscoMest02/StudentDetection/tree/main/Motor%20de%20Deteccion%20Facial%20y%20Estimacion%20de%20Poses)
+-  **/Entregables Retroalimentacion:** Folder con la primer version de los entregables de reto. (https://github.com/FranciscoMest02/StudentDetection/tree/main/Entregables%20Retroalimentacion)
+-  **/Avances semanales:** Folder que contiene registro y evidencia de avances semanales durante el desarrollo del proyecto. (https://github.com/FranciscoMest02/StudentDetection/tree/main/Avances%20Semanales)
 -  **README.md:** Este archivo.
 
 ## Archivos a Revisar
