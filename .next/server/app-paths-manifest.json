@@ -1,0 +1,6 @@
+{
+  "/page": "app/page.js",
+  "/api/getCourses/route": "app/api/getCourses/route.js",
+  "/pages/grupos/page": "app/pages/grupos/page.js",
+  "/pages/infoCurso/[id]/page": "app/pages/infoCurso/[id]/page.js"
+}
