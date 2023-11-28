@@ -18,7 +18,15 @@ Este es el repositorio final para el Reto de la UF TC3007C. En este repositorio 
 7. **README.md:** Este archivo.
 
 
-## Evidencias de comunicación con el socio formador
-En el siguiente link se encuentra un documento donde se adjuntan las evidencias de comunicación con el socio formador.
+## Correcciones en entregables de reto.
+Se llevaron a cabo distintas correcciones en los distintos entregables correspondientes al desarrollo del reto acorde a la retroalimentacion brindada por los docentes.
 
+
+## Demo
+En esta liga se podra encontrar un video con el demo de la plataforma desarrollada:
+https://www.youtube.com/watch?v=v0SqAuWAqok&t=338s&ab_channel=Adri%C3%A1nEmmanuelFazMercado
+
+
+## Evidencias de comunicación con el socio formador
+En el siguiente link se encuentra un documento donde se adjuntan las evidencias de comunicación con el socio formador:
 https://docs.google.com/document/d/1X4DocWQJ_EFGQN72RJdWkf8j-ll4KNYzT1MrofMsIfU/edit?usp=sharing
